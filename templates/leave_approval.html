@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Pending Leave Requests</h2>
+{% for leave in leaves %}
+<form method="post" class="border p-2 mb-2">
+{% csrf_token %}
+<p><b>{{ leave.user.username }}</b> | {{ leave.leave_type }} | {{ leave.start_date }} to {{ leave.end_date }}</p>
+<input type="hidden" name="leave_id" value="{{ leave.id }}">
+{{ form.as_p }}
+<button type="submit">Submit Decision</button>
+</form>
+{% empty %}
+<p>No pending requests</p>
+{% endfor %}
+{% endblock %}

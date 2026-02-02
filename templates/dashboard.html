@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Welcome, {{ request.user.username }}</h2>
+
+{% if balance %}
+<h4>Your Leave Balance</h4>
+<ul>
+    <li>Vacation: {{ balance.vacation }}</li>
+    <li>Sick: {{ balance.sick }}</li>
+    {% if balance.casual %}
+    <li>Casual: {{ balance.casual }}</li>
+    {% endif %}
+</ul>
+{% else %}
+<p>No leave balance assigned yet.</p>
+{% endif %}
+
+{% endblock %}
